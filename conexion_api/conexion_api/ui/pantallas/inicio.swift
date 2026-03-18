@@ -7,41 +7,42 @@
 
 import SwiftUI
 
+
 struct Inicio: View {
     @Environment(ControladorGeneral.self) var controlador
     
     var body: some View {
         Text("Hola mundo")
-        
-        switch(controlador.estado){
-            case .descargando_datos:
-                Text("Cargando, por favor espere")
-            
-            case .mostrando_datos:
-            NavigationStack{
-                ScrollView{
-                    ForEach(controlador.publicaciones){
-                        publicacion in NavigationLink{
-                            PantallaPublicacion(id: publicacion.id)
-                        } label: {
-                            Text(publicacion.title)
-                        }.onTapGesture(perform:) {
-                            <#code#>
+        NavigationStack{
+            switch(controlador.estado){
+                case .descargando_publicaciones:
+                    Text("Cargando, por favor espera")
+                    
+                case .en_espera:
+                    ScrollView{
+                        ForEach(controlador.publicaciones){ publicacion in
+                            NavigationLink{
+                                PantallaPublicacion(id: publicacion.id)
+                            } label: {
+                                Text(publicacion.title)
+                            }
+                            .simultaneousGesture(TapGesture().onEnded {
+                                controlador.publicacion = nil
+                                controlador.descargar_publicacion(id: publicacion.id)
+                            }
+                            )
+                            
                         }
                     }
-                }
-            
+                    
+                    
+                case .descargando_publicacion:
+                    Text("")
+                case .error_en_descarga:
+                    Text("ERROR: Asegurate de tener wifi!!!")
             }
-            
-            case .error_en_descarga:
-                Text("ERROR: Asegurate de estar conectado a una red")
         }
         
-        /*Text("El estado actual del controlador es: \(controlador.estado)")
-            .onAppear{
-                controlador
-                    .descargar_publicaciones()
-            }*/
     }
 }
 

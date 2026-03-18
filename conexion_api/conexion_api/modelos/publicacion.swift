@@ -15,4 +15,6 @@ struct Publicacion: Identifiable, Codable {
     let id: Int
     let title: String
     let body: String
+    
+    var comentarios: [Comentario]?
 }

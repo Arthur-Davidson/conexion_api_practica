@@ -13,13 +13,13 @@ struct conexion_apiApp: App {
     
     var body: some Scene {
         WindowGroup {
-            Inicio()
+            MenuBase()
                 .environment(controlador_general)
         }
     }
 }
 
 #Preview {
-    Inicio()
+    MenuBase()
         .environment(ControladorGeneral())
 }
