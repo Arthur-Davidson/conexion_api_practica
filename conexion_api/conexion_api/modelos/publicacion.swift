@@ -10,6 +10,7 @@
 // Encodable: Transformar de Swift a JSON
 // Codable: Las dos anteriores
 
+
 struct Publicacion: Identifiable, Codable {
     let userId: Int
     let id: Int
@@ -17,4 +18,5 @@ struct Publicacion: Identifiable, Codable {
     let body: String
     
     var comentarios: [Comentario]?
+    var usuario: Usuario?
 }
