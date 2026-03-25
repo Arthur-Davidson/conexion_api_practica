@@ -11,7 +11,18 @@ struct VistaComentario: View {
     var comentario: Comentario
     
     var body: some View {
-        Text("Cuerpo: \(comentario.body)")
-        Text("De: \(comentario.name)")
+        HStack {
+            Image("usuario")
+                .resizable()
+                .scaledToFill()
+                .frame(width: 40, height: 40)
+                .clipShape(Circle())
+                .shadow(radius: 2)
+            
+            Text("De: \(comentario.name)")
+                .font(.headline)
+                .foregroundColor(Color("texto_1"))
+        }
+        Text("\(comentario.body)")
     }
 }

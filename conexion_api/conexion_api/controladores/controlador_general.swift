@@ -8,7 +8,6 @@ import SwiftUI
 
 @Observable
 class ControladorGeneral{
-    let url_base = "https://jsonplaceholder.typicode.com"
     
     public var estado: EstadosControladorGeneral
     

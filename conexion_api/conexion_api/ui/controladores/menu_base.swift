@@ -22,13 +22,7 @@ struct MenuBase: View {
             // Perfil
             Tab("Perfil", systemImage: "person.crop.circle.fill") {
                 VStack {
-                    Text("Perfil del usuario")
-                        .font(.title)
-                        .foregroundColor(Color("texto_1"))
-                        .padding()
-                    
-                    Text("Aquí podrías agregar foto, nombre, email, etc.")
-                        .foregroundColor(Color("texto_2"))
+                    PantallaUsuario(id: 7)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color("fondo"))

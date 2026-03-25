@@ -11,6 +11,6 @@ struct MiniVistaUsuario: View {
     var usuario: Usuario
     
     var body: some View {
-        Text("Nombre: \(usuario.name)")
+        Text("Escrito por: \(usuario.name)")
     }
 }

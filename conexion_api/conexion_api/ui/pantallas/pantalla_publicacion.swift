@@ -13,31 +13,81 @@ struct PantallaPublicacion: View {
     var id: Int
 
     var body: some View {
-        VStack{
-            switch(controlador.estado){
-                    case .descargando_publicacion:
-                        Image(systemName: "arrowshape.down.circle")
-                            .symbolEffect(.bounce.down, options: .repeat(3))
-                        
-                    case .en_espera:
-                        if let publicacion = controlador.publicacion{
-                            VistaPublicacion(publicacion: publicacion)
-                        }
-                        else {
-                            Text("Error en la descarga")
-                        }
-                    
-                    case .error_en_descarga:
-                        Text("Existe un error en la descarga")
-                        
-                    default:
-                        Text("Si ves esto, puedes mostrar esta pantalla por una galleta.")
+        NavigationStack {
+            ZStack {
                 
-            
+                // Fondo
+                Color("fondo")
+                    .ignoresSafeArea()
+                
+                VStack(spacing: 0) {
+                    
+                    // Header
+                    ZStack {
+                        Color("texto_1")
+                            .frame(height: 80)
+                        
+                        Text("Publicación")
+                            .font(.largeTitle)
+                            .bold()
+                            .foregroundColor(.white)
+                    }
+                    
+                    // Contenido
+                    VStack {
+                        switch(controlador.estado){
+                            
+                        case .descargando_publicacion:
+                            Spacer()
+                            VStack(spacing: 12) {
+                                Image(systemName: "arrowshape.down.circle")
+                                    .symbolEffect(.bounce.down, options: .repeat(3))
+                                    .font(.largeTitle)
+                                    .foregroundColor(Color("texto_2"))
+                                
+                                Text("Descargando...")
+                                    .foregroundColor(Color("texto_2"))
+                            }
+                            Spacer()
+                        
+                        case .en_espera:
+                            if let publicacion = controlador.publicacion {
+                                ScrollView {
+                                    VStack {
+                                        VistaPublicacion(publicacion: publicacion)
+                                    }
+                                    .padding()
+                                }
+                            }
+                            else {
+                                Spacer()
+                                Text("Error en la descarga")
+                                    .foregroundColor(.red)
+                                    .font(.headline)
+                                Spacer()
+                            }
+                        
+                        case .error_en_descarga:
+                            Spacer()
+                            Text("Existe un error en la descarga")
+                                .foregroundColor(.red)
+                                .font(.headline)
+                            Spacer()
+                            
+                        default:
+                            Spacer()
+                            Text("Si ves esto, puedes mostrar esta pantalla por una galleta.")
+                                .foregroundColor(Color("texto_2"))
+                                .multilineTextAlignment(.center)
+                                .padding()
+                            Spacer()
+                        }
+                    }
+                }
             }
-        }
-        .onAppear{
-            controlador.descargar_publicacion(id: id)
+            .onAppear{
+                controlador.descargar_publicacion(id: id)
+            }
         }
     }
 }
