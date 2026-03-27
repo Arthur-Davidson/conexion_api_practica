@@ -24,10 +24,17 @@ struct Inicio: View {
                         Color("texto_1")
                             .frame(height: 100)
                         
-                        Text("Publicaciones")
-                            .font(.largeTitle)
-                            .bold()
-                            .foregroundColor(.white)
+                        VStack{
+                            Text("Bienvenido a")
+                                .font(.title3)
+                                .bold()
+                                .foregroundColor(.white)
+                            
+                            Text("Grin Book")
+                                .font(.largeTitle)
+                                .bold()
+                                .foregroundColor(.white)
+                        }
                     }
                     
                     // Contenido según estado
@@ -35,10 +42,15 @@ struct Inicio: View {
                         
                     case .descargando_publicaciones:
                         Spacer()
-                        ProgressView("Cargando, por favor espera")
-                            .font(.title2)
-                            .foregroundColor(Color("texto_2"))
-                            .scaleEffect(1.1)
+                        VStack(spacing: 12) {
+                            Image(systemName: "arrow.down.circle.fill")
+                                .symbolEffect(.breathe)
+                                .font(.largeTitle)
+                                .foregroundColor(Color("texto_2"))
+                            
+                            Text("Cargando publicaciones...")
+                                .foregroundColor(Color("texto_2"))
+                        }
                         Spacer()
                         
                     case .en_espera:

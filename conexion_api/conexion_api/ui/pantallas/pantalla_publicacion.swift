@@ -40,12 +40,12 @@ struct PantallaPublicacion: View {
                         case .descargando_publicacion:
                             Spacer()
                             VStack(spacing: 12) {
-                                Image(systemName: "arrowshape.down.circle")
-                                    .symbolEffect(.bounce.down, options: .repeat(3))
+                                Image(systemName: "arrow.down.circle.fill")
+                                    .symbolEffect(.breathe)
                                     .font(.largeTitle)
                                     .foregroundColor(Color("texto_2"))
                                 
-                                Text("Descargando...")
+                                Text("Cargando publicación...")
                                     .foregroundColor(Color("texto_2"))
                             }
                             Spacer()

@@ -31,7 +31,7 @@ class ControladorGeneral{
         estado = .descargando_publicacion
         
         Task{
-            try await Task.sleep(for: .seconds(5))
+            try await Task.sleep(for: .seconds(3))
             await _descargar_publicacion(id: String(id))
             await _descargar_comentarios_de_publicacion(id: String(id))
             await _descargar_usuario(id: self.publicacion?.userId ?? -1)
@@ -107,7 +107,7 @@ class ControladorGeneral{
         estado = .descargando_publicaciones
         
         Task{
-            try await Task.sleep(for: .seconds(5))
+            try await Task.sleep(for: .seconds(3))
             await _descargar_publicaciones()
             
             estado = .en_espera

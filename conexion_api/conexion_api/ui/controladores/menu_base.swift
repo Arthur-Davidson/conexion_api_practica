@@ -30,17 +30,7 @@ struct MenuBase: View {
             
             // Configuración
             Tab("Configuración", systemImage: "gearshape") {
-                VStack {
-                    Text("Configuración de la app")
-                        .font(.title)
-                        .foregroundColor(Color("texto_1"))
-                        .padding()
-                    
-                    Text("Opciones de preferencias, notificaciones, etc.")
-                        .foregroundColor(Color("texto_2"))
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color("fondo"))
+                PantallaConfiguracion()
             }
             .badge("!")
         }

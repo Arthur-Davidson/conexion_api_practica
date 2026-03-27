@@ -69,7 +69,29 @@ struct VistaPublicacion: View {
                     .font(.headline)
                     .foregroundColor(Color("texto_1"))
                 
-                VStack(spacing: 12) {
+                if let primerComentario = publicacion.comentarios?.first {
+                    
+                    VStack(alignment: .leading, spacing: 8) {
+                        VistaComentario(comentario: primerComentario)
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color("tarjeta"))
+                    .cornerRadius(12)
+                    .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
+                }
+                
+                if let comentarios = publicacion.comentarios {
+                    NavigationLink {
+                        PantallaComentarios(comentarios: comentarios)
+                    } label: {
+                        Text("Ver todos los comentarios")
+                            .font(.subheadline)
+                            .foregroundColor(Color("texto_1"))
+                    }
+                }
+                
+                /*VStack(spacing: 12) {
                     ForEach(publicacion.comentarios ?? []) { comentario in
                         
                         VStack(alignment: .leading, spacing: 8) {
@@ -81,7 +103,7 @@ struct VistaPublicacion: View {
                         .cornerRadius(12)
                         .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
                     }
-                }
+                }*/
             }
             .padding()
         }

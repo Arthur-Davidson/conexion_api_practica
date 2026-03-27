@@ -23,7 +23,7 @@ class ControladorUsuario{
         estado = .descargando
         
         Task{
-            try await Task.sleep(for: .seconds(5))
+            try await Task.sleep(for: .seconds(2))
             
             await _descargar_usuario(id: id)
         }
